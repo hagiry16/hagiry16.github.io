@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookmarklet Installer</title>
+    <title>lol script</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .drag-button {
@@ -29,8 +29,8 @@
         <h1 class="text-4xl font-bold mb-4">Script Installer</h1>
         <p class="text-gray-400 mb-8">Drag the pink button below into your bookmarks bar to install the script.</p>
 
-        <a class="drag-button" href="javascript:(async()=>{try{const response=await fetch('https://hagiry16.github.io/lolscript?'+Date.now());if(!response.ok)throw new Error('File not found');const code=await response.text();eval(code);}catch(e){alert('Error: '+e.message);}})();">
-            Drag Me to Bookmarks
+        <a class="drag-button" href="javascript:(async()=>{try{const response=await fetch('javascript:void(function(){var f='.feedback-display';var n='.next-problem';var p=300;var r=function(){var c=document.querySelector('.crisp-button.crisp-button-cancel');if(c){c.click();}var i=setInterval(function(){var d=document.querySelector(f);if(d){var b=document.querySelector(n);if(b){clearInterval(i);b.click();setTimeout(r,1000);return;}}},p);};r();})();">
+            lol script
         </a>
 
         <div class="mt-12 p-4 bg-gray-800 rounded-lg text-left text-sm">
