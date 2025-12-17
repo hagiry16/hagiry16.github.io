@@ -1,0 +1,1 @@
+javascript:void(function(){var f='.feedback-display';var n='.next-problem';var p=300;var r=function(){var c=document.querySelector('.crisp-button.crisp-button-cancel');if(c){c.click();}var i=setInterval(function(){var d=document.querySelector(f);if(d){var b=document.querySelector(n);if(b){clearInterval(i);b.click();setTimeout(r,1000);return;}}},p);};r();})();
