@@ -3,28 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عيد ميلاد سعيد</title>
+    <title>مفاجأة عيد ميلاد!</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="card">
-        <div class="emoji">🎂</div>
-        <h1>عيد ميلاد سعيد!</h1>
-        <p>أتمنى لك عاماً مليئاً بالسعادة والنجاح.</p>
-        <button onclick="celebrate()">اضغط هنا للاحتفال</button>
+    <div class="balloon-container" id="balloons"></div>
+
+    <div class="container">
+        <div id="gift-section">
+            <div class="gift-box" onclick="revealBirthday()">
+                <div class="lid"></div>
+                <div class="box"></div>
+            </div>
+            <p class="instruction">اضغط على الهدية لفتحها!</p>
+        </div>
+
+        <div id="main-content" class="hidden">
+            <div class="card">
+                <div class="emoji-float">🎉</div>
+                <h1>كل عام وأنت بخير!</h1>
+                <p>أتمنى لك سنة مليئة بالأفراح والمسرات</p>
+                <div class="age-counter">✨ يوم مميز لشخص مميز ✨</div>
+                <button class="btn-sparkle" onclick="burst()">المزيد من الحماس! 🎊</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        function celebrate() {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
+        function createBalloons() {
+            const container = document.getElementById('balloons');
+            const colors = ['#FF595E', '#FFCA3A', '#8AC926', '#1982C4', '#6A4C93'];
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(balloon);
+            }
         }
-        // Auto-fire on load
-        window.onload = celebrate;
+
+        function revealBirthday() {
+            document.getElementById('gift-section').classList.add('hidden');
+            document.getElementById('main-content').classList.remove('hidden');
+            burst();
+        }
+
+        function burst() {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff0000', '#00ff00', '#0000ff']
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ffea00', '#ff00ff', '#00ffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        createBalloons();
     </script>
 </body>
 </html>
